@@ -1,0 +1,26 @@
+# Ignorar DLLs
+*.dll
+
+# Ignorar EXEs
+*.exe
+
+# Pastas de build
+bin/
+obj/
+
+# Arquivos temporários do Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# Pacotes NuGet (opcional — geralmente não versionar)
+packages/
+*.nupkg
+
+# Publicação
+publish/
