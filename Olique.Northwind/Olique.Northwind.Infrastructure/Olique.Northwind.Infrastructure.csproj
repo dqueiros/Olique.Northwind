@@ -18,4 +18,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Olique.Northwind.Domain\Olique.Northwind.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
