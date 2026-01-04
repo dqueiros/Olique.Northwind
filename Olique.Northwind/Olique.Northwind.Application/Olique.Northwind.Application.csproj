@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Olique.Northwind.Domain\Olique.Northwind.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

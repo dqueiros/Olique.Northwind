@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Olique.Northwind.Domain.Entity;
+using Olique.Northwind.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

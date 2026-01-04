@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Olique.Northwind.Application\Olique.Northwind.Application.csproj" />
     <ProjectReference Include="..\Olique.Northwind.Infrastructure\Olique.Northwind.Infrastructure.csproj" />
   </ItemGroup>
 

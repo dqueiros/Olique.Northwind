@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Olique.Northwind.Domain.Entity
+namespace Olique.Northwind.Application.Dtos
 {
-    public class Category
+    public class CategoryDto
     {
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }

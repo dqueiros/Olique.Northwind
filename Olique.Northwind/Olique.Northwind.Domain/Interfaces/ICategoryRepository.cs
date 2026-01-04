@@ -1,0 +1,14 @@
+﻿using Olique.Northwind.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Olique.Northwind.Domain.Interfaces
+{
+    public interface ICategoryRepository
+    {
+        IQueryable<Category> GetAll();
+    }
+}
