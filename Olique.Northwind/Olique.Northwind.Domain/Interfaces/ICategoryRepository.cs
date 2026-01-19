@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace Olique.Northwind.Domain.Interfaces
 {
-    public interface ICategoryRepository
+    public interface ICategoryRepository : IBaseRepository<Category>
     {
-        IQueryable<Category> GetAll();
     }
 }

@@ -1,11 +1,8 @@
 ﻿using Olique.Northwind.Application.Dtos;
 using Olique.Northwind.Application.Interfaces;
+using Olique.Northwind.Application.Mappings;
+using Olique.Northwind.Domain.Entities;
 using Olique.Northwind.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Olique.Northwind.Application.Services
 {
@@ -18,14 +15,70 @@ namespace Olique.Northwind.Application.Services
             _categoryRepository = categoryRepository;
         }
 
-        public List<CategoryDto> GetCategories()
+        public async Task<Category> CreateAsync(CategoryDto dto)
         {
-            return _categoryRepository
-                .GetAll()
-                .Select(o => new CategoryDto { CategoryID = o.CategoryID,
-                                            CategoryName = o.CategoryName,
-                                            Description = o.Description })
-                .ToList();
+            var entity = dto.ToEntity();
+
+            await _categoryRepository.AddAsync(entity);
+            await _categoryRepository.SaveChangesAsync();
+
+            return entity;
+        }
+
+        public async Task<IEnumerable<CategoryDto>> GetAllAsync()
+        {
+            var entities = await _categoryRepository.GetAllAsync();
+
+            if (entities == null)
+                return Enumerable.Empty<CategoryDto>();
+
+            return entities.ToDtoList();
+        }
+
+        public async Task<CategoryDto?> GetByIdAsync(int id)
+        {
+            var entity = await _categoryRepository.GetByIdAsync(id);
+
+            if (entity == null)
+                return null;
+
+            return entity.ToDto();
+        }
+
+        public async Task UpdateAsync(int id, CategoryDto dto)
+        {
+            var existing = await _categoryRepository.GetByIdAsync(id);
+
+            if (existing == null)
+                throw new KeyNotFoundException("Categoria não encontrada.");
+
+            existing.UpdateFromDto(dto);
+
+            await _categoryRepository.UpdateAsync(existing);
+            await _categoryRepository.SaveChangesAsync();
+        }
+
+        public async Task UpdateNameAsync(int id, string categoryName)
+        {
+            var existing = await _categoryRepository.GetByIdAsync(id);
+
+            if (existing == null)
+                throw new KeyNotFoundException("Categoria não encontrada.");
+
+            existing.CategoryName = categoryName;
+
+            await _categoryRepository.UpdateAsync(existing);
+            await _categoryRepository.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var category = await _categoryRepository.GetByIdAsync(id);
+            if (category == null)
+                throw new KeyNotFoundException("Categoria não encontrada.");
+
+            await _categoryRepository.DeleteAsync(category);
+            await _categoryRepository.SaveChangesAsync();
         }
     }
 }

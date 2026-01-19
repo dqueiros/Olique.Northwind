@@ -9,18 +9,13 @@ using System.Threading.Tasks;
 
 namespace Olique.Northwind.Infrastructure.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
         private readonly AppDbContext _context;
 
-        public CategoryRepository(AppDbContext context)
+        public CategoryRepository(AppDbContext context) : base(context)
         {
             _context = context;
-        }
-
-        public IQueryable<Category> GetAll()
-        {
-            return _context.Categories;
         }
     }
 }
